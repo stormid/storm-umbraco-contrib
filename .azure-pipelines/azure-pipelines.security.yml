@@ -1,0 +1,26 @@
+parameters:
+  name: 'Security'
+  dependsOn: ''
+  pool: Storm-Build-Production
+jobs:
+- job: '${{ parameters.name }}'
+  displayName: 'Code Security Scanning'
+  pool: ${{ parameters.pool }}
+  dependsOn: ${{ parameters.dependsOn }}
+  steps:
+    - checkout: self
+      clean: true
+    - task: ms-codeanalysis.vss-microsoft-security-code-analysis.build-task-credscan.CredScan@2
+      displayName: 'Run CredScan'
+      continueOnError: true
+    - task: ms-codeanalysis.vss-microsoft-security-code-analysis.build-task-report.SdtReport@1
+      displayName: 'Create Security Analysis Report'
+      inputs:
+        AllTools: true
+        ToolLogsNotFoundAction: Error
+    - task: ms-codeanalysis.vss-microsoft-security-code-analysis.build-task-publishsecurityanalysislogs.PublishSecurityAnalysisLogs@2
+      displayName: 'Publish Security Analysis Logs'
+    - task: ms-codeanalysis.vss-microsoft-security-code-analysis.build-task-postanalysis.PostAnalysis@1
+      displayName: 'Post Analysis'
+      inputs:
+        AllTools: true
