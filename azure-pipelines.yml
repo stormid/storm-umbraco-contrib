@@ -1,5 +1,3 @@
-variables:
-  agent.pool: Storm-Build-Production
 trigger:
   - master
   - release/*
@@ -7,4 +5,4 @@ jobs:
 - template: '.azure-pipelines/azure-pipelines.build.yml'
   parameters:
     name: Windows
-    pool: '$(agent.pool)'
+    pool: Storm-Build-Production
