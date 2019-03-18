@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "storm.umbraco.contrib", "src\storm.umbraco.contrib\storm.umbraco.contrib.csproj", "{CBD6EE93-888B-4A0F-8944-DFF06A3EF733}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "storm.umbraco.contrib", "src\storm.umbraco.contrib\storm.umbraco.contrib.csproj", "{CBD6EE93-888B-4A0F-8944-DFF06A3EF733}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "contrib.tests", "tests\XUnitTestProject1\contrib.tests.csproj", "{0F458122-66CF-4EEF-A82C-0E0C6F38189A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "contrib.tests", "tests\contrib.tests\contrib.tests.csproj", "{F621EBF4-2E22-44F7-A844-BC9A6CE971C0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{CBD6EE93-888B-4A0F-8944-DFF06A3EF733}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CBD6EE93-888B-4A0F-8944-DFF06A3EF733}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CBD6EE93-888B-4A0F-8944-DFF06A3EF733}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0F458122-66CF-4EEF-A82C-0E0C6F38189A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0F458122-66CF-4EEF-A82C-0E0C6F38189A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0F458122-66CF-4EEF-A82C-0E0C6F38189A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0F458122-66CF-4EEF-A82C-0E0C6F38189A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F621EBF4-2E22-44F7-A844-BC9A6CE971C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F621EBF4-2E22-44F7-A844-BC9A6CE971C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F621EBF4-2E22-44F7-A844-BC9A6CE971C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F621EBF4-2E22-44F7-A844-BC9A6CE971C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
