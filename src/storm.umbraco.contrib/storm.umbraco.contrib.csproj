@@ -4,4 +4,9 @@
     <TargetFramework>net471</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.5.0" />
+    <PackageReference Include="UmbracoCms.Core" Version="7.14.0" />
+  </ItemGroup>
+
 </Project>
