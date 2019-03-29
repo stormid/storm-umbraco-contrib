@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace storm.umbraco.contrib.Extensions
 {
@@ -30,7 +31,7 @@ namespace storm.umbraco.contrib.Extensions
                 }
             }
 
-            return defaultValue.Equals(default(T)) ? default(T) : defaultValue;
+            return EqualityComparer<T>.Default.Equals(defaultValue, default(T)) ? default(T) : defaultValue;
         }
     }
 }
