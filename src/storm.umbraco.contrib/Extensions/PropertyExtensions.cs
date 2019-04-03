@@ -15,7 +15,7 @@ namespace storm.umbraco.contrib.Extensions
         /// <returns>The targetProperty if it is set, the highest priority fallback property if it is set, or a default value.</returns>
         public static T GetPropertyOrFallbacks<T>(this T targetProperty, T[] fallbackProperties = null, T defaultValue = default(T))
         {
-            if (targetProperty != null && !targetProperty.Equals(default(T)))
+            if (targetProperty.IsPropertyNotNullOrEmpty())
             {
                 return targetProperty;
             }
@@ -24,7 +24,7 @@ namespace storm.umbraco.contrib.Extensions
             {
                 foreach (var fallback in fallbackProperties)
                 {
-                    if (fallback != null && !fallback.Equals(default(T)))
+                    if (fallback.IsPropertyNotNullOrEmpty())
                     {
                         return fallback;
                     }
@@ -32,6 +32,17 @@ namespace storm.umbraco.contrib.Extensions
             }
 
             return EqualityComparer<T>.Default.Equals(defaultValue, default(T)) ? default(T) : defaultValue;
+        }
+
+        /// <summary>
+        /// Checks a property is not null and not empty
+        /// </summary>
+        /// <typeparam name="T">The type of property to be checked.</typeparam>
+        /// <param name="property">The property to be checked.</param>
+        /// <returns>Whether the property is not null and not empty</returns>
+        private static bool IsPropertyNotNullOrEmpty<T>(this T property)
+        {
+            return property != null && !property.Equals(default(T)) && typeof(T) == typeof(string) && !string.IsNullOrEmpty(property as string);
         }
     }
 }

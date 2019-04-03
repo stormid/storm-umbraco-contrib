@@ -14,6 +14,14 @@ namespace contrib.tests.Extensions
         }
 
         [Fact]
+        public void Only_TargetProperty_Is_Empty()
+        {
+            var targetProperty = "";
+            var result = PropertyExtensions.GetPropertyOrFallbacks(targetProperty);
+            Assert.Null(result);
+        }
+
+        [Fact]
         public void TargetProperty_Is_Set_And_One_Fallback_Is_Set()
         {
             var targetProperty = "Here is a sample property";
@@ -26,7 +34,7 @@ namespace contrib.tests.Extensions
         public void TargetProperty_Is_Set_And_One_Fallback_Is_Not_Set()
         {
             var targetProperty = "Here is a sample property";
-            var fallbackProperty = default(string);
+            var fallbackProperty = (string)null;
             var result = PropertyExtensions.GetPropertyOrFallbacks(targetProperty, new[] { fallbackProperty });
             Assert.Equal(targetProperty, result);
         }
@@ -34,7 +42,7 @@ namespace contrib.tests.Extensions
         [Fact]
         public void TargetProperty_Is_Not_Set_And_One_Fallback_Is_Set()
         {
-            var targetProperty = default(string);
+            var targetProperty = (string)null;
             var fallbackProperty = "Here is a fallback property";
             var result = PropertyExtensions.GetPropertyOrFallbacks(targetProperty, new[] { fallbackProperty });
             Assert.Equal(fallbackProperty, result);
@@ -43,7 +51,7 @@ namespace contrib.tests.Extensions
         [Fact]
         public void TargetProperty_Is_Not_Set_And_Two_Fallbacks_Both_Set()
         {
-            var targetProperty = default(string);
+            var targetProperty = (string)null;
             var fallbackProperty1 = "Here is a first fallback property";
             var fallbackProperty2 = "Here is a second fallback property";
             var result = PropertyExtensions.GetPropertyOrFallbacks(targetProperty, new[] { fallbackProperty1, fallbackProperty2 });
@@ -53,9 +61,9 @@ namespace contrib.tests.Extensions
         [Fact]
         public void TargetProperty_Is_Not_Set_And_Two_Fallbacks_Only_First_Set()
         {
-            var targetProperty = default(string);
+            var targetProperty = (string)null;
             var fallbackProperty1 = "Here is a first fallback property";
-            var fallbackProperty2 = default(string);
+            var fallbackProperty2 = (string)null;
             var result = PropertyExtensions.GetPropertyOrFallbacks(targetProperty, new[] { fallbackProperty1, fallbackProperty2 });
             Assert.Equal(fallbackProperty1, result);
         }
@@ -63,8 +71,8 @@ namespace contrib.tests.Extensions
         [Fact]
         public void TargetProperty_Is_Not_Set_And_Two_Fallbacks_Only_Second_Set()
         {
-            var targetProperty = default(string);
-            var fallbackProperty1 = default(string);
+            var targetProperty = (string)null;
+            var fallbackProperty1 = (string)null;
             var fallbackProperty2 = "Here is a second fallback property";
             var result = PropertyExtensions.GetPropertyOrFallbacks(targetProperty, new[] { fallbackProperty1, fallbackProperty2 });
             Assert.Equal(fallbackProperty2, result);
@@ -73,19 +81,19 @@ namespace contrib.tests.Extensions
         [Fact]
         public void TargetProperty_Is_Not_Set_And_Two_Fallbacks_Both_Unset()
         {
-            var targetProperty = default(string);
-            var fallbackProperty1 = default(string);
-            var fallbackProperty2 = default(string);
+            var targetProperty = (string)null;
+            var fallbackProperty1 = (string)null;
+            var fallbackProperty2 = (string)null;
             var result = PropertyExtensions.GetPropertyOrFallbacks(targetProperty, new[] { fallbackProperty1, fallbackProperty2 });
-            Assert.Equal(default(string), result);
+            Assert.Null(result);
         }
 
         [Fact]
         public void TargetProperty_Is_Set_And_Two_Fallbacks_Both_Not_Set_And_Default_Is_Set()
         {
             var targetProperty = "Here is a sample property";
-            var fallbackProperty1 = default(string);
-            var fallbackProperty2 = default(string);
+            var fallbackProperty1 = (string)null;
+            var fallbackProperty2 = (string)null;
             var defaultValue = "Here is a default value";
             var result = PropertyExtensions.GetPropertyOrFallbacks(targetProperty, new[] { fallbackProperty1, fallbackProperty2 }, defaultValue);
             Assert.Equal(targetProperty, result);
@@ -94,8 +102,8 @@ namespace contrib.tests.Extensions
         [Fact]
         public void TargetProperty_Is_Set_And_Two_Fallbacks_First_Not_Set_And_Default_Is_Set()
         {
-            var targetProperty = default(string);
-            var fallbackProperty1 = default(string);
+            var targetProperty = (string)null;
+            var fallbackProperty1 = (string)null;
             var fallbackProperty2 = "Here is a second fallback property";
             var defaultValue = "Here is a default value";
             var result = PropertyExtensions.GetPropertyOrFallbacks(targetProperty, new[] { fallbackProperty1, fallbackProperty2 }, defaultValue);
@@ -105,12 +113,12 @@ namespace contrib.tests.Extensions
         [Fact]
         public void TargetProperty_Is_Set_And_Two_Fallbacks_Both_Not_Set_And_Default_Not_Set()
         {
-            var targetProperty = default(string);
-            var fallbackProperty1 = default(string);
-            var fallbackProperty2 = default(string);
-            var defaultValue = default(string);
+            var targetProperty = (string)null;
+            var fallbackProperty1 = (string)null;
+            var fallbackProperty2 = (string)null;
+            var defaultValue = (string)null;
             var result = PropertyExtensions.GetPropertyOrFallbacks(targetProperty, new[] { fallbackProperty1, fallbackProperty2 }, defaultValue);
-            Assert.Equal(default(string), result);
+            Assert.Null(result);
         }
     }
 }
