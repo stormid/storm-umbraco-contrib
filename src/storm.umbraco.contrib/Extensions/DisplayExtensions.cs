@@ -14,7 +14,7 @@ namespace storm.umbraco.contrib.Extensions
         /// </summary>
         /// <param name="value">The string to be shortened.</param>
         /// <param name="length">The maximum character length, characters after this will be trimmed.</param>
-        /// <param name="keepFullWordAtEnd">Do not split in the middle of a word which goes beyond the character length.</param>
+        /// <param name="keepFullWordAtEnd">Cut from the last whitespace before the character limit.</param>
         /// <param name="ellipsis">A string to be appended at the end of the truncated value.</param>
         /// <returns></returns>
         public static string Truncate(this string value, int length, bool keepFullWordAtEnd = true, string ellipsis = "...")
