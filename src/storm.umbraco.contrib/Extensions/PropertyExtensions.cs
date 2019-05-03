@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace storm.umbraco.contrib.Extensions
@@ -12,10 +13,11 @@ namespace storm.umbraco.contrib.Extensions
         /// <param name="targetProperty">The preferred property to be returned.</param>
         /// <param name="fallbackProperties">A series of fallbacks properties, in priority order, to be used if the targetProperty is not set.</param>
         /// <param name="defaultValue">The default value to be returned if both the target and fallback properties are not set.</param>
+        /// <param name="treatDefaultAsNull">Should default values be returned</param>
         /// <returns>The targetProperty if it is set, the highest priority fallback property if it is set, or a default value.</returns>
-        public static T GetPropertyOrFallbacks<T>(this T targetProperty, T[] fallbackProperties = null, T defaultValue = default(T))
+        public static T WithFallbacks<T>(this T targetProperty, T[] fallbackProperties = null, T defaultValue = default(T), bool treatDefaultAsNull = false)
         {
-            if (targetProperty.IsPropertyNotNullOrEmpty())
+            if (targetProperty.IsPropertyNotNullOrEmpty(treatDefaultAsNull))
             {
                 return targetProperty;
             }
@@ -24,7 +26,7 @@ namespace storm.umbraco.contrib.Extensions
             {
                 foreach (var fallback in fallbackProperties)
                 {
-                    if (fallback.IsPropertyNotNullOrEmpty())
+                    if (fallback.IsPropertyNotNullOrEmpty(treatDefaultAsNull))
                     {
                         return fallback;
                     }
@@ -39,10 +41,16 @@ namespace storm.umbraco.contrib.Extensions
         /// </summary>
         /// <typeparam name="T">The type of property to be checked.</typeparam>
         /// <param name="property">The property to be checked.</param>
+        /// <param name="treatDefaultAsNull">Should default values be returned</param>
         /// <returns>Whether the property is not null and not empty</returns>
-        private static bool IsPropertyNotNullOrEmpty<T>(this T property)
+        private static bool IsPropertyNotNullOrEmpty<T>(this T property, bool treatDefaultAsNull)
         {
-            return property != null && !property.Equals(default(T)) && typeof(T) == typeof(string) && !string.IsNullOrEmpty(property as string);
+            if (typeof(T) == typeof(string))
+            {
+                return property != null && !string.IsNullOrEmpty((string)(object)property);
+            }
+
+            return property != null && treatDefaultAsNull && !property.Equals(default(T));
         }
     }
 }
