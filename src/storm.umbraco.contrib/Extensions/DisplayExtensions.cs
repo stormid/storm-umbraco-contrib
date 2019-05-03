@@ -9,7 +9,7 @@ namespace storm.umbraco.contrib.Extensions
             return !string.IsNullOrEmpty(value) ? new HtmlString(value.Replace("\n", "<br />")) : new HtmlString(string.Empty);
         }
 
-        public static string Truncate(this string value, int length, string ellipsis, bool keepFullWordAtEnd)
+        public static string Truncate(this string value, int length, bool keepFullWordAtEnd = true, string ellipsis = "...")
         {
             if (string.IsNullOrEmpty(value)) return string.Empty;
 
@@ -22,7 +22,12 @@ namespace storm.umbraco.contrib.Extensions
                 value = value.Substring(0, value.LastIndexOf(' '));
             }
 
-            return value + ellipsis;
+            if (!string.IsNullOrWhiteSpace(ellipsis))
+            {
+                value += ellipsis;
+            }
+
+            return value;
         }
     }
 }
