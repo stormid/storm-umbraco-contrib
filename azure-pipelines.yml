@@ -1,5 +1,7 @@
-pool:
-  vmImage: 'windows-2019'
+jobs:
+- job: Windows
+  pool:
+    vmImage: 'windows-2019'
 variables:
   cake.buildTarget: 'CI'
   build.configuration: 'Release'
