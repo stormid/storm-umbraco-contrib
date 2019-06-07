@@ -31,8 +31,7 @@ stages:
       displayName: 'DevOps push'
       inputs:
         command: push
-        packagesToPush: 'artifacts/NuGet/*.nupkg;!artifacts/NuGet/*.symbols.nupkg'
-        publishVstsFeed: '/69a340d0-19c9-4da4-a7c3-11a19fd323a6'
+        packagesToPush: '**/*.nupkg;!**/*.symbols.nupkg'
 
 - stage: DeployNuGet
   dependsOn: Build
@@ -46,6 +45,6 @@ stages:
       displayName: 'NuGet push'
       inputs:
         command: push
-        packagesToPush: 'artifacts/NuGet/*.nupkg;!artifacts/NuGet/*.symbols.nupkg'
+        packagesToPush: '**/*.nupkg;!**/*.symbols.nupkg'
         nuGetFeedType: external
         publishFeedCredentials: 'NuGet (Storm.Umbraco*)'
