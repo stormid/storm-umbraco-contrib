@@ -32,7 +32,6 @@ stages:
       inputs:
         command: push
         packagesToPush: '**/*.nupkg;!**/*.symbols.nupkg'
-        publishVstsFeed: '/69a340d0-19c9-4da4-a7c3-11a19fd323a6'
 
 - stage: DeployNuGet
   dependsOn: Build
