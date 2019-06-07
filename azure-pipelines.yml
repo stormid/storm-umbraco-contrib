@@ -1,17 +1,51 @@
 trigger:
 - master
+- refs/tags/v*
 
-pool:
-  vmImage: 'windows-latest'
+stages:
+- stage: Build
+  jobs:
+  - job: Build
+    pool:
+      vmImage: 'windows-latest'
+    variables:
+      cake.buildTarget: 'CI'
+      build.configuration: 'Release'
+    steps:
+    - task: cake-build.cake.cake-build-task.Cake@0
+      displayName: 'Run Cake Build'
+      name: 'RunCakeBuild'
+      inputs:
+        target: $(cake.buildTarget)
+        arguments: '--Configuration="$(build.configuration)"'
 
-variables:
-  cake.buildTarget: 'CI'
-  build.configuration: 'Release'
-  
-steps:
-- task: cake-build.cake.cake-build-task.Cake@0
-  displayName: 'Run Cake Build'
-  name: 'RunCakeBuild'
-  inputs:
-    target: $(cake.buildTarget)
-    arguments: '--Configuration="$(build.configuration)"'
+- stage: DeployDevOps
+  dependsOn: Build
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'master'))
+  jobs:
+  - job: DeployDevOps
+    pool:
+      vmImage: 'windows-latest'
+    steps:
+    - task: NuGetCommand@2
+      displayName: 'DevOps push'
+      inputs:
+        command: push
+        packagesToPush: '$(System.DefaultWorkingDirectory)/build/artifacts/NuGet/*.nupkg;!$(System.DefaultWorkingDirectory)/build/artifacts/NuGet/*.symbols.nupkg'
+        publishVstsFeed: '/69a340d0-19c9-4da4-a7c3-11a19fd323a6'
+
+- stage: DeployNuGet
+  dependsOn: Build
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/tags/v*'))
+  jobs:
+  - job: DeployNuGet
+    pool:
+      vmImage: 'windows-latest'
+    steps:
+    - task: NuGetCommand@2
+      displayName: 'NuGet push'
+      inputs:
+        command: push
+        packagesToPush: '$(System.DefaultWorkingDirectory)/build/artifacts/NuGet/*.nupkg;!$(System.DefaultWorkingDirectory)/build/artifacts/NuGet/*.symbols.nupkg'
+        nuGetFeedType: external
+        publishFeedCredentials: 'NuGet (Storm.Umbraco*)'
