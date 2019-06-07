@@ -1,12 +1,13 @@
-jobs:
-- job: Windows
-  pool:
-    vmImage: 'windows-2019'
+trigger:
+- master
+
+pool:
+  vmImage: 'windows-latest'
+  
 variables:
   cake.buildTarget: 'CI'
   build.configuration: 'Release'
-trigger:
-- master
+  
 steps:
 - task: cake-build.cake.cake-build-task.Cake@0
   displayName: 'Run Cake Build'
