@@ -48,6 +48,12 @@ stages:
     pool:
       vmImage: 'windows-latest'
     steps:
+    - task: DownloadBuildArtifacts@0
+      inputs:
+        buildType: 'current'
+        downloadType: 'specific'
+        itemPattern: '**'
+        downloadPath: '$(System.ArtifactsDirectory)'
     - task: NuGetCommand@2
       displayName: 'NuGet push'
       inputs:
