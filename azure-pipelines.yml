@@ -26,7 +26,13 @@ stages:
   - job: DeployDevOps
     pool:
       vmImage: 'windows-latest'
-    steps:    
+    steps:   
+    - task: DownloadBuildArtifacts@0
+      inputs:
+        buildType: 'current'
+        downloadType: 'single'
+        itemPattern: '*.nupkg'
+        downloadPath: '$(System.ArtifactsDirectory)' 
     - task: NuGetCommand@2
       displayName: 'DevOps push'
       inputs:
