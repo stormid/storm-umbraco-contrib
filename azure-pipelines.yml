@@ -27,13 +27,12 @@ stages:
     pool:
       vmImage: 'windows-latest'
     steps:
-    - bash: echo 'Directory'
-    - bash: echo $(System.DefaultWorkingDirectory)
+    - bash: echo $(Build.SourcesDirectory)
     - task: NuGetCommand@2
       displayName: 'DevOps push'
       inputs:
         command: push
-        packagesToPush: '$(System.DefaultWorkingDirectory)/artifacts/NuGet/*.nupkg;!$(System.DefaultWorkingDirectory)/artifacts/NuGet/*.symbols.nupkg'
+        packagesToPush: '$(Build.SourcesDirectory)/artifacts/NuGet/*.nupkg;!$(Build.SourcesDirectory)/artifacts/NuGet/*.symbols.nupkg'
 
 - stage: DeployNuGet
   dependsOn: Build
@@ -47,6 +46,6 @@ stages:
       displayName: 'NuGet push'
       inputs:
         command: push
-        packagesToPush: '$(System.DefaultWorkingDirectory)/artifacts/NuGet/*.nupkg;!$(System.DefaultWorkingDirectory)/artifacts/NuGet/*.symbols.nupkg'
+        packagesToPush: '$(Build.SourcesDirectory)/artifacts/NuGet/*.nupkg;!$(Build.SourcesDirectory)/artifacts/NuGet/*.symbols.nupkg'
         nuGetFeedType: external
         publishFeedCredentials: 'NuGet (Storm.Umbraco*)'
