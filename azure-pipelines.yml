@@ -30,9 +30,9 @@ stages:
     - task: DownloadBuildArtifacts@0
       inputs:
         buildType: 'current'
-        downloadType: 'single'
-        itemPattern: '*.nupkg'
-        downloadPath: '$(System.ArtifactsDirectory)' 
+        downloadType: 'specific'
+        itemPattern: 'NuGet/*.nupkg;!NuGet/*.symbols.nupkg'
+        downloadPath: '$(System.ArtifactsDirectory)'
     - task: NuGetCommand@2
       displayName: 'DevOps push'
       inputs:
