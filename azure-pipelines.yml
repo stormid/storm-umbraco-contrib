@@ -26,14 +26,13 @@ stages:
   - job: DeployDevOps
     pool:
       vmImage: 'windows-latest'
-    steps:
     - bash: echo $(Build.SourcesDirectory)
     - task: NuGetCommand@2
       displayName: 'DevOps push'
       inputs:
         command: push
         packagesToPush: '$(Build.SourcesDirectory)/artifacts/NuGet/*.nupkg;!$(Build.SourcesDirectory)/artifacts/NuGet/*.symbols.nupkg'
-
+        
 - stage: DeployNuGet
   dependsOn: Build
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/tags/v*'))
