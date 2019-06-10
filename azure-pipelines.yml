@@ -26,8 +26,17 @@ stages:
   - job: DeployDevOps
     pool:
       vmImage: 'windows-latest'
-    steps:
-    - bash: echo $(Build.SourcesDirectory)
+    steps:    
+    - task: NuGetCommand@2
+      displayName: 'DevOps push'
+      inputs:
+        command: push
+        packagesToPush: '$(Build.ArtifactsDirectory)/artifacts/NuGet/*.nupkg;!$(Build.ArtifactsDirectory)/artifacts/NuGet/*.symbols.nupkg'
+    - task: NuGetCommand@2
+      displayName: 'DevOps push'
+      inputs:
+        command: push
+        packagesToPush: '$(Build.ArtifactStagingDirectory)/artifacts/NuGet/*.nupkg;!$(Build.ArtifactStagingDirectory)/artifacts/NuGet/*.symbols.nupkg'
     - task: NuGetCommand@2
       displayName: 'DevOps push'
       inputs:
