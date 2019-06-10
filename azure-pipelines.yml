@@ -26,6 +26,7 @@ stages:
   - job: DeployDevOps
     pool:
       vmImage: 'windows-latest'
+    steps:
     - bash: echo $(Build.SourcesDirectory)
     - task: NuGetCommand@2
       displayName: 'DevOps push'
