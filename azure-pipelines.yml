@@ -34,15 +34,11 @@ stages:
         itemPattern: '**'
         downloadPath: '$(System.ArtifactsDirectory)'
     - task: NuGetCommand@2
-      displayName: 'DevOps push'
       inputs:
-        command: push
+        command: 'push'
         packagesToPush: '$(System.ArtifactsDirectory)/artifacts/NuGet/*.nupkg;!$(System.ArtifactsDirectory)/artifacts/NuGet/*.symbols.nupkg'
-    - task: NuGetCommand@2
-      displayName: 'DevOps push'
-      inputs:
-        command: push
-        packagesToPush: '$(System.ArtifactsDirectory)/*.nupkg;!$(System.ArtifactsDirectory)/*.symbols.nupkg'
+        nuGetFeedType: 'internal'
+        publishVstsFeed: '/69a340d0-19c9-4da4-a7c3-11a19fd323a6'
     
 - stage: DeployNuGet
   dependsOn: Build
@@ -52,10 +48,16 @@ stages:
     pool:
       vmImage: 'windows-latest'
     steps:
+    - task: DownloadBuildArtifacts@0
+      inputs:
+        buildType: 'current'
+        downloadType: 'specific'
+        itemPattern: '**'
+        downloadPath: '$(System.ArtifactsDirectory)'
     - task: NuGetCommand@2
       displayName: 'NuGet push'
       inputs:
         command: push
-        packagesToPush: '$(Build.SourcesDirectory)/artifacts/NuGet/*.nupkg;!$(Build.SourcesDirectory)/artifacts/NuGet/*.symbols.nupkg'
+        packagesToPush: '$(Build.ArtifactsDirectory)/artifacts/NuGet/*.nupkg;!$(Build.ArtifactsDirectory)/artifacts/NuGet/*.symbols.nupkg'
         nuGetFeedType: external
         publishFeedCredentials: 'NuGet (Storm.Umbraco*)'
