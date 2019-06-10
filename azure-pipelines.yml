@@ -27,6 +27,8 @@ stages:
     pool:
       vmImage: 'windows-latest'
     steps:
+    - bash: echo 'Directory'
+    - bash: echo $(System.DefaultWorkingDirectory)
     - task: NuGetCommand@2
       displayName: 'DevOps push'
       inputs:
