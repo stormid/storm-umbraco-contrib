@@ -58,6 +58,6 @@ stages:
       displayName: 'NuGet push'
       inputs:
         command: push
-        packagesToPush: '$(Build.ArtifactsDirectory)/artifacts/NuGet/*.nupkg;!$(Build.ArtifactsDirectory)/artifacts/NuGet/*.symbols.nupkg'
+        packagesToPush: '$(System.ArtifactsDirectory)/artifacts/NuGet/*.nupkg;!$(System.ArtifactsDirectory)/artifacts/NuGet/*.symbols.nupkg'
         nuGetFeedType: external
         publishFeedCredentials: 'NuGet (Storm.Umbraco*)'
