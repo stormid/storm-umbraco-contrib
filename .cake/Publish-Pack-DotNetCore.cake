@@ -10,7 +10,6 @@ Task("Publish:Pack:DotNetCore")
     {
         NoBuild = true,
         NoRestore = true,
-        IncludeSymbols = true,
         Configuration = config.Solution.BuildConfiguration,
         OutputDirectory = projectArtifactDirectory
     };
