@@ -20,4 +20,8 @@
     <ProjectReference Include="..\..\src\storm.umbraco.contrib\storm.umbraco.contrib.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="System.Web" />
+  </ItemGroup>
+
 </Project>
