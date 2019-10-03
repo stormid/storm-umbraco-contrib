@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.136
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29215.179
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "storm.umbraco.contrib", "src\storm.umbraco.contrib\storm.umbraco.contrib.csproj", "{CBD6EE93-888B-4A0F-8944-DFF06A3EF733}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Storm.Umbraco.Contrib", "src\storm.umbraco.contrib\Storm.Umbraco.Contrib.csproj", "{CBD6EE93-888B-4A0F-8944-DFF06A3EF733}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "contrib.tests", "tests\contrib.tests\contrib.tests.csproj", "{F621EBF4-2E22-44F7-A844-BC9A6CE971C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contrib.Tests", "tests\contrib.tests\Contrib.Tests.csproj", "{F621EBF4-2E22-44F7-A844-BC9A6CE971C0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

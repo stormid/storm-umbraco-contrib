@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\storm.umbraco.contrib\storm.umbraco.contrib.csproj" />
+    <ProjectReference Include="..\..\src\storm.umbraco.contrib\Storm.Umbraco.Contrib.csproj" />
   </ItemGroup>
 
 </Project>
