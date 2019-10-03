@@ -1,4 +1,6 @@
-# Storm.Umbraco.Contrib
+# Storm.Umbraco.Contrib 
+[![Build Status](https://dev.azure.com/storm-id-oss/Storm.Umbraco/_apis/build/status/Storm.Umbraco.Contrib?branchName=master)](https://dev.azure.com/storm-id-oss/Storm.Umbraco/_build/latest?definitionId=4&branchName=master)
+
 A collection of useful code snippets (helpers, extensions etc) that can be shared across Umbraco projects. 
 
 ## Contribute
