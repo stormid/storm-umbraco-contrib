@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace storm.umbraco.contrib.Extensions
+namespace Storm.Umbraco.Contrib.Extensions
 {
     public static class HtmlExtensions
     {

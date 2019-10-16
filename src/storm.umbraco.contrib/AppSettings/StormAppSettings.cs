@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Configuration;
 
-namespace storm.umbraco.contrib.AppSettings
+namespace Storm.Umbraco.Contrib.AppSettings
 {
     public abstract class StormAppSettings
     {

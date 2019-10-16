@@ -1,8 +1,8 @@
 ﻿using System;
-using storm.umbraco.contrib.Extensions;
+using Storm.Umbraco.Contrib.Extensions;
 using Xunit;
 
-namespace contrib.tests.Extensions
+namespace Contrib.Tests.Extensions
 {
     public class WithFallbacksTests
     {

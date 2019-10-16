@@ -1,7 +1,7 @@
 ﻿using Xunit;
-using storm.umbraco.contrib.Extensions;
+using Storm.Umbraco.Contrib.Extensions;
 
-namespace contrib.tests.Extensions
+namespace Contrib.Tests.Extensions
 {
     public class TruncateTests
     {
