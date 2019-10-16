@@ -1,6 +1,6 @@
 using Xunit;
 
-namespace contrib.tests
+namespace Contrib.Tests
 {
     public class SanityTest
     {

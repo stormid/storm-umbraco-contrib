@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace storm.umbraco.contrib.Extensions
+namespace Storm.Umbraco.Contrib.Extensions
 {
     public static class PropertyExtensions
     {

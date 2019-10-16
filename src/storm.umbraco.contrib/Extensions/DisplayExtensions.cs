@@ -1,6 +1,6 @@
 ﻿using System.Web;
 
-namespace storm.umbraco.contrib.Extensions
+namespace Storm.Umbraco.Contrib.Extensions
 {
     public static class DisplayExtensions
     {

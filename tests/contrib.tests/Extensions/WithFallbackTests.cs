@@ -1,4 +1,4 @@
-﻿using storm.umbraco.contrib.Extensions;
+﻿using Storm.Umbraco.Contrib.Extensions;
 using System;
 using Xunit;
 
